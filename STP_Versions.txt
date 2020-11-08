@@ -1,0 +1,34 @@
+Link Speed Cost Value
+---------------------
+
+10 Gbps		2
+
+1 Gbps		4
+
+100 Mbps	19
+
+10 Mbps		100
+
+
+Common Spanning Tree Protocol (STP)		1990 als IEEE 802.1D 
+
+Per VLAN Spanning Tree Protocol (PVST)	 	Cisco properitär
+
+Rapid Spanning Tree Protocol (RSTP)		IEEE 802.1w
+
+Per VLAN Rapid Spanning Tree Protocol		Cisco properitär	
+
+Multiple Spanning Tree Protocol (MSTP) 		IEEE 802.1s
+
+
+Interface Modus
+---------------
+
+STP => BLK, LIS, LRN, FWD
+
+RSTP+ => DIS, LRN, FWD
+
+
+
+
+

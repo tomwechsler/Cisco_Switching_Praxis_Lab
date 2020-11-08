@@ -1,0 +1,98 @@
+FHRP HSRP Config
+----------------
+
+DLS1
+----
+enable
+conf t
+ip routing
+interface loopback 200
+ip address 209.165.200.254 255.255.255.0
+exit
+interface vlan 99
+ip address 172.16.99.1 255.255.255.0
+standby 99 ip 172.16.99.5
+standby 99 preempt
+standby 99 priority 110
+exit
+interface vlan 10
+ip address 172.16.10.1 255.255.255.0
+standby 10 ip 172.16.10.5
+standby 10 preempt
+standby 10 priority 110
+exit
+interface vlan 20
+ip address 172.16.20.1 255.255.255.0
+standby 20 ip 172.16.20.5
+standby 20 preempt
+standby 20 priority 110
+exit
+interface vlan 30
+ip address 172.16.30.1 255.255.255.0
+standby 30 ip 172.16.30.5
+standby 30 preempt
+exit
+interface vlan 40
+ip address 172.16.40.1 255.255.255.0
+standby 40 ip 172.16.40.5
+standby 40 preempt
+exit
+exit
+wr
+
+DLS2
+----
+enable
+conf t
+ip routing
+interface loopback 200
+ip address 209.165.200.254 255.255.255.0
+interface vlan 99
+ip address 172.16.99.2 255.255.255.0
+standby 99 ip 172.16.99.5
+standby 99 preempt
+exit
+interface vlan 10
+ip address 172.16.10.2 255.255.255.0
+standby 10 ip 172.16.10.5
+standby 10 preempt
+exit
+interface vlan 20
+ip address 172.16.20.2 255.255.255.0
+standby 20 ip 172.16.20.5
+standby 20 preempt
+exit
+interface vlan 30
+ip address 172.16.30.2 255.255.255.0
+standby 30 ip 172.16.30.5
+standby 30 preempt
+standby 30 priority 110
+exit
+interface vlan 40
+ip address 172.16.40.2 255.255.255.0
+standby 40 ip 172.16.40.5
+standby 40 preempt
+standby 40 priority 110
+exit
+exit
+wr
+
+# Ping from HOSTA
+ping 172.16.10.5
+ping 209.165.200.254
+
+DLS1
+----
+show standby
+show standby brief
+show ip route | begin Gateway
+
+DLS2
+----
+show standby
+show standby brief
+
+
+
+
+

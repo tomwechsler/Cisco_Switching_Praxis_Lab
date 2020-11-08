@@ -1,0 +1,174 @@
+DLS1
+-----
+enable
+configure terminal
+hostname DLS1 
+interface vlan 99
+ip address 172.16.99.1 255.255.255.0
+no shutdown
+exit
+line vty 0 15
+logging sync
+password cisco
+login
+exit
+interface range fastEthernet 0/7 - 8
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 1 mode desirable 
+no shut
+exit
+interface range fastEthernet 0/11 - 12
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 3 mode desirable 
+no shut
+exit
+interface range fastEthernet 0/09 - 10
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 2 mode desirable 
+no shut
+exit
+interface fastEthernet 0/6
+switchport mode access
+switchport access vlan 99
+spanning-tree portfast
+no shutdown
+exit
+vtp domain SWLAB
+vtp version 2
+vtp mode server
+vlan 10
+name Finance
+vlan 20 
+name Engineering
+vlan 30
+name Server-Farm1
+vlan 40
+name Server-Farm2
+vlan 99
+name Management
+exit
+exit
+wr
+
+DLS2
+-----
+enable
+configure terminal
+hostname DLS2 
+interface vlan 99
+ip address 172.16.99.2 255.255.255.0
+no shutdown
+exit
+line vty 0 15
+logging sync
+password cisco
+login
+exit
+interface range fastEthernet 0/7 - 8
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 1 mode desirable 
+no shut
+exit
+interface range fastEthernet 0/11 - 12
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 3 mode desirable 
+no shut
+exit
+interface range fastEthernet 0/09 - 10
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 2 mode desirable 
+no shut
+exit
+interface fastEthernet 0/6
+switchport mode access
+switchport access vlan 40
+spanning-tree portfast
+no shutdown
+exit
+vtp domain SWLAB
+vtp version 2
+vtp mode client
+exit
+wr
+
+ALS1
+-----
+enable
+configure terminal
+hostname ALS1
+ip default-gateway 172.16.99.5
+interface vlan 99
+ip address 172.16.99.3 255.255.255.0
+no shutdown
+exit
+interface range fastEthernet 0/11 - 12
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 3 mode desirable 
+no shut
+exit
+interface range fastEthernet 0/7 - 8
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 1 mode desirable 
+no shut
+exit
+interface range fastEthernet 0/09 - 10
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 2 mode desirable 
+no shut
+exit
+interface fastEthernet 0/6
+switchport mode access
+switchport access vlan 10
+spanning-tree portfast
+no shutdown
+exit
+vtp mode client
+exit
+wr
+
+ALS2
+-----
+enable
+configure terminal
+hostname ALS2
+ip default-gateway 172.16.99.5
+interface vlan 99
+ip address 172.16.99.4 255.255.255.0
+no shutdown
+exit
+interface range fastEthernet 0/11 - 12
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 3 mode desirable 
+no shut
+exit
+interface range fastEthernet 0/7 - 8
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 1 mode desirable 
+no shut
+exit
+interface range fastEthernet 0/09 - 10
+switchport trunk encapsulation dot1q
+switchport mode trunk
+channel-group 2 mode desirable 
+no shut
+exit
+interface fastEthernet 0/6
+switchport mode access
+switchport access vlan 20
+spanning-tree portfast
+no shutdown
+exit
+vtp mode client
+exit
+wr
